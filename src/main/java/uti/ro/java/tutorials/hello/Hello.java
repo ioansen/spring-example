@@ -1,4 +1,4 @@
-package uti.ro.java.tutorials;
+package uti.ro.java.tutorials.hello;
 
 public class Hello {
 
