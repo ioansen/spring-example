@@ -8,10 +8,19 @@
     <bean id = "helloTemplate" abstract="true">
         <property name="message" value="happy"/>
     </bean>
-    
+
     <bean id = "hello" class = "uti.ro.java.tutorials.hello.Hello"
             parent="helloTemplate">
     </bean>
 
+    <bean id = "textEditor" class = "uti.ro.java.tutorials.texteditor.TextEditor">
+        <constructor-arg ref = "spellChecker"/>
+    </bean>
+
+    <!-- Definition for spellChecker bean -->
+    <bean id = "spellChecker" class = "uti.ro.java.tutorials.texteditor.SpellChecker"/>
+
     <bean class="uti.ro.java.tutorials.hello.InitHello"/>
+
+
 </beans>

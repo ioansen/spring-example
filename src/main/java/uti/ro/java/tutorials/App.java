@@ -1,8 +1,10 @@
-package uti.ro.java.tutorials.hello;
+package uti.ro.java.tutorials;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import uti.ro.java.tutorials.hello.Hello;
+import uti.ro.java.tutorials.texteditor.TextEditor;
 
 public class App {
 
@@ -17,6 +19,9 @@ public class App {
         helloToo.getMessage(); //still raza cuz of scope singleton default
         helloToo.setMessage("back to happy");
         halo.getMessage();
+
+        TextEditor te = (TextEditor) context.getBean("textEditor");
+        te.spellCheck();
 
         context.registerShutdownHook(); //shutdown so we can see destroy methods
     }
