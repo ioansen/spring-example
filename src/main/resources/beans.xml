@@ -5,8 +5,12 @@
         default-init-method="init"
         default-destroy-method="destroy">
 
-    <bean id = "hello" class = "uti.ro.java.tutorials.hello.Hello">
-        <property name = "message" value = "happy"/>
+    <bean id = "helloTemplate" abstract="true">
+        <property name="message" value="happy"/>
+    </bean>
+    
+    <bean id = "hello" class = "uti.ro.java.tutorials.hello.Hello"
+            parent="helloTemplate">
     </bean>
 
     <bean class="uti.ro.java.tutorials.hello.InitHello"/>

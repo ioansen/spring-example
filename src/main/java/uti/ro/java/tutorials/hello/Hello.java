@@ -17,6 +17,6 @@ public class Hello {
         System.out.println("Bean " + this.getClass().getSimpleName() + " is going through init.");
     }
     public void destroy() {
-        System.out.println("Bean " + this.getClass().getSimpleName() + " will destroy now.");
+        System.out.println("Bean " + this.getClass().getSimpleName() + " will destroy now thank you");
     }
 }
