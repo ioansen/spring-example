@@ -14,14 +14,14 @@ public class App {
 
         context.start();
         Hello halo = context.getBean(Hello.class);
-        halo.getMessage();
+        System.out.println(halo.getMessage());
         halo.setMessage("raza");
-        halo.getMessage();
+        System.out.println(halo.getMessage());
 
         Hello helloToo = context.getBean(Hello.class);
-        helloToo.getMessage(); //still raza cuz of scope singleton default
+        System.out.println(helloToo.getMessage()); //still raza cuz of scope singleton default
         helloToo.setMessage("back to happy");
-        halo.getMessage();
+        System.out.println(halo.getMessage());
 
         TextEditor te = context.getBean(TextEditor.class);
         te.spellCheck();
