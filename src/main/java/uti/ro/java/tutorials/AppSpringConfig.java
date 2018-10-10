@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import uti.ro.java.tutorials.aspects.LoggingAspectExample;
+import uti.ro.java.tutorials.aspects.TimeMethodAspect;
 import uti.ro.java.tutorials.events.CustomEvent;
 import uti.ro.java.tutorials.hello.Hello;
 import uti.ro.java.tutorials.hello.InitHello;
@@ -62,5 +63,10 @@ public class AppSpringConfig {
     @Bean
     public LoggingAspectExample loggingAspectExample(){
         return new LoggingAspectExample();
+    }
+
+    @Bean
+    public TimeMethodAspect timeMethodAspect(){
+        return new TimeMethodAspect();
     }
 }

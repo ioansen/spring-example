@@ -1,5 +1,7 @@
 package uti.ro.java.tutorials.hello;
 
+import uti.ro.java.tutorials.annotations.Timed;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -11,7 +13,14 @@ public class Hello {
         return "Hello " + message;
     }
 
+    @Timed
     public void setMessage(String message) {
+        try{
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            e.getMessage();
+            e.printStackTrace();
+        }
         this.message = message;
     }
 
