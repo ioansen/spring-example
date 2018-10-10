@@ -1,7 +1,12 @@
 package uti.ro.java.tutorials.jdbcex;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -9,6 +14,10 @@ import java.util.List;
 public class EmployeeJDBCTemplate implements EmployeeDAO {
 
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+
 
     @Override
     @Autowired
@@ -18,9 +27,25 @@ public class EmployeeJDBCTemplate implements EmployeeDAO {
 
     @Override
     public void create(Employee e) {
-        String SQL = "INSERT into employees (name,lastname,salary,department,job) " +
-                "values (?,?,?,?,?)";
-        jdbcTemplate.update(SQL, e.getName(), e.getLastname(),e.getSalary(), e.getDep(), e.getJob());
+        //minimal transaction example
+        TransactionDefinition def = new DefaultTransactionAttribute();
+        TransactionStatus status  = transactionManager.getTransaction(def);
+
+        try {
+            String SQL = "INSERT into employees (name,lastname,salary,department,job) " +
+                    "values (?,?,?,?,?)";
+            jdbcTemplate.update(SQL, e.getName(),
+                    e.getLastname(),e.getSalary(), e.getDep(), e.getJob());
+
+            //more database operations here
+            transactionManager.commit(status);
+
+        }catch (DataAccessException ex){
+            //rollback the transaction in case of error
+            transactionManager.rollback(status);
+            throw ex;
+        }
+
         System.out.println("[JDBC EXAMPLE]: Inserting Record");
 
     }

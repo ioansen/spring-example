@@ -40,6 +40,9 @@ public class App {
         }
 
         ejdbct.update(15, new Employee("Grija", "Larnaca", 2500, "dr", "nada"));
+
+       /* ejdbct.delete(32);
+        ejdbct.delete(33);*/
         context.registerShutdownHook(); //shutdown so we can see destroy methods
         context.stop();
     }
