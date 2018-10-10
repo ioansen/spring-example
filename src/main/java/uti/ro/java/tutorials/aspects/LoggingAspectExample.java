@@ -19,8 +19,7 @@ public class LoggingAspectExample {
     @Before("logging()")
     public void beforeAdvice(JoinPoint joinPoint){
         System.out.println("[ASPECT EXAMPLE]: Before advice on " +
-                joinPoint.getTarget().getClass().getSimpleName() + "'s " +
-                joinPoint.getSignature().getName());
+                joinPoint.getSignature().toShortString());
         //System.out.println("[ASPECT EXAMPLE]: JoinPoint target: " + joinPoint.getTarget().getClass().getSimpleName());
         //System.out.println("[ASPECT EXAMPLE]: JoinPoint kind: " + joinPoint.getKind());
         //System.out.println("[ASPECT EXAMPLE]: JoinPoint signature: " + joinPoint.getSignature());
