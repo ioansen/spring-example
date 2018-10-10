@@ -12,6 +12,7 @@ public class App {
     public static void main(String[] args){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppSpringConfig.class);
 
+        context.start();
         Hello halo = context.getBean(Hello.class);
         halo.getMessage();
         halo.setMessage("raza");
@@ -25,6 +26,11 @@ public class App {
         TextEditor te = context.getBean(TextEditor.class);
         te.spellCheck();
 
+        CustomEventPublisher cvp = context.getBean(CustomEventPublisher.class);
+        cvp.publish();
+        cvp.publish();
+
         context.registerShutdownHook(); //shutdown so we can see destroy methods
+        context.stop();
     }
 }
