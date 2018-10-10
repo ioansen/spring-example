@@ -8,13 +8,11 @@ import java.util.List;
 
 public class EmployeeJDBCTemplate implements EmployeeDAO {
 
-    private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
     @Override
     @Autowired
     public void setDataSource(DataSource ds) {
-        this.dataSource = ds;
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 

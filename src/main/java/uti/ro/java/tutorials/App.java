@@ -35,8 +35,6 @@ public class App {
         EmployeeJDBCTemplate ejdbct = context.getBean(EmployeeJDBCTemplate.class);
         ejdbct.create(new Employee("Liviu", "Larnaca", 2500, "dr", "nada"));
         ejdbct.create(new Employee("Lira", "Dita", 9500, "dr", "nada"));
-        ejdbct.create(new Employee("Liviu", "Larnaca", 2500, "dr", "nada"));
-
         for(Employee e: ejdbct.listEmployees()){
             System.out.println(e);
         }
