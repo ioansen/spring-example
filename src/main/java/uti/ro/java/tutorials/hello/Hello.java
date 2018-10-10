@@ -18,11 +18,12 @@ public class Hello {
 
     @PostConstruct
     public void init(){
-        System.out.println("Bean " + this.getClass().getSimpleName() + " is going through init.");
+        message = "happy";
+        System.out.println("[INIT METHOD EXAMPLE]: Bean " + this.getClass().getSimpleName() + " is going through init.");
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println("Bean " + this.getClass().getSimpleName() + " will destroy now thank you");
+        System.out.println("[DESTROY METHOD EXAMPLE]: Bean " + this.getClass().getSimpleName() + " will destroy now thank you");
     }
 }

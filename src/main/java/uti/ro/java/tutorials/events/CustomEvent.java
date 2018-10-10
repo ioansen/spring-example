@@ -10,6 +10,6 @@ public class CustomEvent extends ApplicationEvent {
 
     @Override
     public String toString(){
-        return "Custom EVent";
+        return "[CUSTOM EVENT EXAMPLE]: Custom EVent";
     }
 }

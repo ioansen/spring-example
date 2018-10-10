@@ -7,6 +7,6 @@ public class CStartEventHandler
         implements ApplicationListener<ContextStartedEvent>{
 
     public void onApplicationEvent(ContextStartedEvent event) {
-        System.out.println("ContextStartedEvent Received");
+        System.out.println("[EVENT EXAMPLE]: ContextStartedEvent Received");
     }
 }

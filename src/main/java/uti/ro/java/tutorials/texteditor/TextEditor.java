@@ -8,7 +8,7 @@ public class TextEditor {
     private SpellChecker spellChecker;
 
     public TextEditor() {
-        System.out.println("Inside TextEditor constructor." );
+        System.out.println("[DI EXAMPLE]: Inside TextEditor constructor." );
     }
     public void spellCheck() {
         spellChecker.checkSpelling();
