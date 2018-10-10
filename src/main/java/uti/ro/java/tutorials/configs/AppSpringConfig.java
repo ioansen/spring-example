@@ -1,13 +1,16 @@
-package uti.ro.java.tutorials;
+package uti.ro.java.tutorials.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
+import uti.ro.java.tutorials.CustomEventPublisher;
 import uti.ro.java.tutorials.aspects.LoggingAspectExample;
 import uti.ro.java.tutorials.aspects.TimeMethodAspect;
 import uti.ro.java.tutorials.events.CustomEvent;
 import uti.ro.java.tutorials.hello.Hello;
 import uti.ro.java.tutorials.hello.InitHello;
+import uti.ro.java.tutorials.jdbcex.JDBCConfig;
 import uti.ro.java.tutorials.listeners.CStartEventHandler;
 import uti.ro.java.tutorials.listeners.CStopEventHandler;
 import uti.ro.java.tutorials.listeners.CustomEventHandler;
