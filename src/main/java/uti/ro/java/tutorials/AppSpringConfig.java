@@ -39,7 +39,6 @@ public class AppSpringConfig {
         return new InitHello();
     }
 
-
     @Bean
     public CStartEventHandler cStartEventHandler(){
         return new CStartEventHandler();
