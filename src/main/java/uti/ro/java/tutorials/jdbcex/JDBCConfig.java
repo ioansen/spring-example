@@ -12,16 +12,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.*;
 
 @Configuration
-@EnableTransactionManagement
-@ComponentScan("uti.ro.java.tutorials.jdbcex")
 public class JDBCConfig {
 
-    /*@Bean
-    public EmpJDBCTemplate employeeJDBCTemplate(){
-        return new EmpJDBCTemplate(dataSource());
-    }*/
-
-    @Bean
+    @Bean(destroyMethod = "")
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
