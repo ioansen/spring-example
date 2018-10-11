@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -12,18 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 @Transactional
 @Repository
 @DependsOn({"transactionManager", "dataSource"})
-public class EmpJDBCTemplate implements EmployeeDAO {
+public class EmployeeDAOImpl implements EmployeeDAO {
 
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public EmpJDBCTemplate(DataSource ds) {
+    public EmployeeDAOImpl(DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
@@ -34,7 +36,7 @@ public class EmpJDBCTemplate implements EmployeeDAO {
                 "values (?,?,?,?,?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update((Connection connection) -> {
+        jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(SQL, new String[]{"id"});
             ps.setString(1, e.getName());
             ps.setString(2, e.getLastname());
@@ -80,4 +82,21 @@ public class EmpJDBCTemplate implements EmployeeDAO {
         jdbcTemplate.update(SQL, e.getName(), e.getLastname(),e.getSalary(), e.getDep(), e.getJob(), id);
         System.out.println("[JDBC EXAMPLE]: Updated Record with ID = " + id );
     }
+
+    private static class EmployeeMapper implements RowMapper<Employee> {
+
+        @Override
+        public Employee mapRow(ResultSet rs, int rowColumn) throws SQLException{
+            Employee employee = new Employee();
+            employee.setId(rs.getInt("id"));
+            employee.setName(rs.getString("name"));
+            employee.setLastname(rs.getString("lastname"));
+            employee.setSalary(rs.getInt("salary"));
+            employee.setDep(rs.getNString("department"));
+            employee.setJob(rs.getString("job"));
+
+            return employee;
+        }
+    }
+
 }

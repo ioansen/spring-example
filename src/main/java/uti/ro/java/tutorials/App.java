@@ -7,8 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import uti.ro.java.tutorials.hello.Hello;
 import uti.ro.java.tutorials.jdbcex.Employee;
-import uti.ro.java.tutorials.jdbcex.EmpJDBCTemplate;
-import uti.ro.java.tutorials.jdbcex.JDBCConfig;
+import uti.ro.java.tutorials.jdbcex.EmployeeDAOImpl;
 import uti.ro.java.tutorials.texteditor.TextEditor;
 
 @Configuration
@@ -43,7 +42,7 @@ public class App {
         * because since EmpJDBCTemplate implements an interface the proxies default to Java interfaced-based proxies
         * as opposed to cglib proxies, the proxyTargetClass modifier modifies this behavior to use cglib instead
         * don't know why Java interface-based proxy doesn't work here though...*/
-        EmpJDBCTemplate ejdbct = context.getBean(EmpJDBCTemplate.class); //i cannot understand the error
+        EmployeeDAOImpl ejdbct = context.getBean(EmployeeDAOImpl.class); //i cannot understand the error
         long id = ejdbct.insert(new Employee("Liviu", "Larnaca", 2500, "dr", "nada"));
         for(Employee e: ejdbct.listEmployees()){
             System.out.println(e);
