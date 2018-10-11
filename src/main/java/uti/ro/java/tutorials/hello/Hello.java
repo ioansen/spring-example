@@ -1,10 +1,12 @@
 package uti.ro.java.tutorials.hello;
 
+import org.springframework.stereotype.Component;
 import uti.ro.java.tutorials.annotations.Timed;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+@Component
 public class Hello {
 
     private String message;
@@ -15,12 +17,6 @@ public class Hello {
 
     @Timed
     public void setMessage(String message) {
-        try{
-            Thread.sleep(2000);
-        }catch (InterruptedException e){
-            e.getMessage();
-            e.printStackTrace();
-        }
         this.message = message;
     }
 

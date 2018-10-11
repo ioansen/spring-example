@@ -2,8 +2,10 @@ package uti.ro.java.tutorials.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
 @Aspect
+@Component
 public class LoggingAspectExample {
     /** Following is the definition for a pointcut to select
      *  all the methods available. So advice will be called

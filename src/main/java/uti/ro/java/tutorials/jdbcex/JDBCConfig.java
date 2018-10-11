@@ -1,16 +1,25 @@
 package uti.ro.java.tutorials.jdbcex;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.*;
 
 @Configuration
 @EnableTransactionManagement
+@ComponentScan("uti.ro.java.tutorials.jdbcex")
 public class JDBCConfig {
+
+    /*@Bean
+    public EmpJDBCTemplate employeeJDBCTemplate(){
+        return new EmpJDBCTemplate(dataSource());
+    }*/
 
     @Bean
     public DataSource dataSource() {
@@ -24,14 +33,7 @@ public class JDBCConfig {
     }
 
     @Bean
-    public EmployeeJDBCTemplate employeeJDBCTemplate(){
-        return new EmployeeJDBCTemplate();
-    }
-
-    @Bean
-    public DataSourceTransactionManager dataSourceTransactionManager(){
-        DataSourceTransactionManager dtm = new DataSourceTransactionManager();
-        dtm.setDataSource(dataSource());
-        return dtm;
+    public PlatformTransactionManager transactionManager(){
+        return new DataSourceTransactionManager(dataSource());
     }
 }

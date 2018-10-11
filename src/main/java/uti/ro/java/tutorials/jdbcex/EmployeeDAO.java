@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface EmployeeDAO {
 
-    void setDataSource(DataSource ds);
+    //void setDataSource(DataSource ds);
 
     void create(Employee e);
 

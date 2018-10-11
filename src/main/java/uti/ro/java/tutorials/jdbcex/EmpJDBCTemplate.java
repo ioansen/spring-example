@@ -2,21 +2,20 @@ package uti.ro.java.tutorials.jdbcex;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 @Transactional
-public class EmployeeJDBCTemplate implements EmployeeDAO {
+@Repository
+public class EmpJDBCTemplate implements EmployeeDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    @Override
     @Autowired
-    public void setDataSource(DataSource ds) {
+    public EmpJDBCTemplate(DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 

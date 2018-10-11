@@ -1,5 +1,8 @@
 package uti.ro.java.tutorials.texteditor;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SpellChecker {
 
     public SpellChecker(){
