@@ -44,17 +44,14 @@ public class App {
         * as opposed to cglib proxies, the proxyTargetClass modifier modifies this behavior to use cglib instead
         * don't know why Java interface-based proxy doesn't work here though...*/
         EmpJDBCTemplate ejdbct = context.getBean(EmpJDBCTemplate.class); //i cannot understand the error
-        ejdbct.create(new Employee("Liviu", "Larnaca", 2500, "dr", "nada"));
-        ejdbct.create(new Employee("Lira", "Dita", 9500, "dr", "nada"));
+        long id = ejdbct.insert(new Employee("Liviu", "Larnaca", 2500, "dr", "nada"));
         for(Employee e: ejdbct.listEmployees()){
             System.out.println(e);
         }
 
         ejdbct.update(15, new Employee("Grija", "Larnaca", 2500, "dr", "nada"));
 
-       /* for(int i = 20; i < 40; i++){
-            ejdbct.delete(i);
-        }*/
+        ejdbct.delete(id);
         context.registerShutdownHook(); //shutdown so we can see destroy methods
         context.stop();
     }

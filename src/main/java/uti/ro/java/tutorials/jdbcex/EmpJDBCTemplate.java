@@ -3,10 +3,16 @@ package uti.ro.java.tutorials.jdbcex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @Transactional
@@ -22,17 +28,28 @@ public class EmpJDBCTemplate implements EmployeeDAO {
     }
 
     @Override
-    public void create(Employee e) {
+    public long insert(Employee e) {
+
         String SQL = "INSERT into employees (name,lastname,salary,department,job) " +
                 "values (?,?,?,?,?)";
-        jdbcTemplate.update(SQL, e.getName(),
-                e.getLastname(),e.getSalary(), e.getDep(), e.getJob());
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update((Connection connection) -> {
+            PreparedStatement ps = connection.prepareStatement(SQL, new String[]{"id"});
+            ps.setString(1, e.getName());
+            ps.setString(2, e.getLastname());
+            ps.setString(3, String.valueOf(e.getSalary()));
+            ps.setString(4, e.getDep());
+            ps.setString(5, e.getJob());
+            return ps;
+        }, keyHolder);
         System.out.println("[JDBC EXAMPLE]: Inserting Record");
+        return (Long) keyHolder.getKey();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Employee getEmployee(int id) {
+    public Employee getEmployee(long id) {
         String SQL = "SELECT * from employees where id = ?";
         Employee e = jdbcTemplate.queryForObject(SQL,
                 new Object[]{id}, new EmployeeMapper());
@@ -50,7 +67,7 @@ public class EmpJDBCTemplate implements EmployeeDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
         String SQL = "delete from employees where id = ?";
         jdbcTemplate.update(SQL, id);
         System.out.println("[JDBC EXAMPLE]: Deleted Record with ID = " + id );
@@ -58,7 +75,7 @@ public class EmpJDBCTemplate implements EmployeeDAO {
     }
 
     @Override
-    public void update(int id, Employee e) {
+    public void update(long id, Employee e) {
         String SQL = "UPDATE employees SET name=?, lastname=?, salary=?, department=?, job = ? WHERE id = ?";
         jdbcTemplate.update(SQL, e.getName(), e.getLastname(),e.getSalary(), e.getDep(), e.getJob(), id);
         System.out.println("[JDBC EXAMPLE]: Updated Record with ID = " + id );

@@ -7,13 +7,13 @@ public interface EmployeeDAO {
 
     //void setDataSource(DataSource ds);
 
-    void create(Employee e);
+    long insert(Employee e);
 
-    Employee getEmployee(int id);
+    Employee getEmployee(long id);
 
     List<Employee> listEmployees();
 
-    void delete(int id);
+    void delete(long id);
 
-    void update(int id, Employee e);
+    void update(long id, Employee e);
 }
