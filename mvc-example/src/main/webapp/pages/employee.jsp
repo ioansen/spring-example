@@ -13,17 +13,21 @@
 <html>
 <head>
     <link href="<c:url value="/css/form.css" />" rel="stylesheet">
+    <link href="<c:url value="/css/err.css" />" rel="stylesheet">
     <title>Add employee</title>
 </head>
 
 <body>
     <div>
         <form:form method = "POST" action = "/addEmployee" modelAttribute="employee">
-            <form:label path = "name">Name</form:label><br>
+            <form:label path = "name">Name</form:label>
+            <form:errors path = "name" cssClass = "error" />
             <form:input path = "name" /><br>
-            <form:label path = "lastname">Last name</form:label><br>
+            <form:label path = "lastname">Last name</form:label>
+            <form:errors path = "lastname" cssClass = "error"  />
             <form:input path = "lastname" /><br>
-            <form:label path = "salary">Salary</form:label><br>
+            <form:label path = "salary">Salary</form:label>
+            <form:errors path = "salary" cssClass = "error" />
             <form:input path = "salary" /><br>
             <form:label path = "dep">Department</form:label><br>
             <form:input path = "dep" /><br>

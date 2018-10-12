@@ -13,12 +13,12 @@ public class HelloController {
     @GetMapping("/hello")
     public String printHello(ModelMap modelMap){
         modelMap.addAttribute("message", "This is a hello message");
-        return "/pages/hello.jsp";
+        return "hello";
     }
 
     @GetMapping
     @PostMapping
     public String index(){
-        return "/pages/index.jsp";
+        return "index";
     }
 }
