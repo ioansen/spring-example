@@ -38,10 +38,6 @@ public class App {
         cvp.publish();
         cvp.publish();
 
-        /*only works when proxyTargetClass = true
-        * because since EmpJDBCTemplate implements an interface the proxies default to Java interfaced-based proxies
-        * as opposed to cglib proxies, the proxyTargetClass modifier modifies this behavior to use cglib instead
-        * don't know why Java interface-based proxy doesn't work here though...*/
         EmployeeDAOImpl ejdbct = context.getBean(EmployeeDAOImpl.class); //i cannot understand the error
         long id = ejdbct.insert(new Employee("Liviu", "Larnaca", 2500, "dr", "nada"));
         for(Employee e: ejdbct.listEmployees()){
