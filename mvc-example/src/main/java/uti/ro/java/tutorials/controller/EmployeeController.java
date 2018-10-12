@@ -13,18 +13,23 @@ public class EmployeeController {
     @GetMapping("/employee")
     public String employee(ModelMap model) {
         model.addAttribute("employee", new Employee());
-        return "employee.jsp";
+        return "/pages/employee.jsp";
     }
 
     @PostMapping("/addEmployee")
     public String addEmployee(@ModelAttribute("employee") Employee e, BindingResult result,
                              ModelMap model) {
+
+        if(result.hasErrors()){
+            System.out.println(result.getAllErrors());
+        }
+
         model.addAttribute("name", e.getName());
         model.addAttribute("lastname", e.getLastname());
         model.addAttribute("salary", e.getSalary());
         model.addAttribute("dep", e.getDep());
         model.addAttribute("job", e.getJob());
 
-        return "result.jsp";
+        return "/pages/result.jsp";
     }
 }
