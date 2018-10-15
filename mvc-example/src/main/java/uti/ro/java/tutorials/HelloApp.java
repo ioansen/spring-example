@@ -1,44 +1,26 @@
 package uti.ro.java.tutorials;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan("uti.ro.java.tutorials")
-public class HelloApp extends WebMvcConfigurerAdapter implements WebApplicationInitializer {
+@SpringBootApplication
+public class HelloApp extends SpringBootServletInitializer {
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926/355);
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(HelloApp.class);
     }
 
-    @Override
-    public void onStartup(javax.servlet.ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext appCtx =
-                new AnnotationConfigWebApplicationContext();
-
-        appCtx.register(HelloApp.class);
-
-        servletContext.addListener(new ContextLoaderListener(appCtx));
-        ServletRegistration.Dynamic dispatcher =
-                servletContext.addServlet("dispatcher", new DispatcherServlet(appCtx));
-
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
+    public static void main(String[] args){
+        SpringApplication.run(HelloApp.class, args);
     }
 
     @Bean
