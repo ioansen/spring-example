@@ -1,10 +1,10 @@
 package uti.ro.java.tutorials.employees.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import uti.ro.java.tutorials.employees.Employee;
 import uti.ro.java.tutorials.employees.repo.EmployeeDAO;
-import uti.ro.java.tutorials.employees.repo.EmployeeDAOImpl;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee getEmployee(long id) {
-        return employeeDAO.getEmployee(id);
+        return employeeDAO.findEmployee(id);
     }
 
     @Override

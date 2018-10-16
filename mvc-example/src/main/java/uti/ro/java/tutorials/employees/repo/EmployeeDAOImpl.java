@@ -1,6 +1,7 @@
 package uti.ro.java.tutorials.employees.repo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -51,7 +52,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     @Transactional(readOnly = true)
-    public Employee getEmployee(long id) {
+    public Employee findEmployee(long id) {
         String SQL = "SELECT * from employees where id = ?";
         Employee e = jdbcTemplate.queryForObject(SQL,
                 new Object[]{id}, new EmployeeMapper());

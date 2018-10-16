@@ -1,6 +1,7 @@
 package uti.ro.java.tutorials.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -8,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import uti.ro.java.tutorials.employees.Employee;
-import uti.ro.java.tutorials.employees.repo.EmployeeDAOImpl;
 import uti.ro.java.tutorials.employees.EmployeeValidator;
 import uti.ro.java.tutorials.employees.service.EmployeeService;
 

@@ -2,7 +2,7 @@ package uti.ro.java.tutorials.employees;
 
 public class Employee {
 
-    private int id;
+    private long id;
     private String name;
     private String lastname;
     private int salary;
@@ -21,11 +21,15 @@ public class Employee {
         this.job = job;
     }
 
-    public int getId() {
+   /* public Employee(long id, String name, String lastname, int salary, String dep, String job) {
+        this(name, lastname, salary, dep, job);
+    }*/
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

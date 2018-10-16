@@ -10,7 +10,7 @@ public interface EmployeeDAO {
 
     long insert(Employee e);
 
-    Employee getEmployee(long id);
+    Employee findEmployee(long id);
 
     List<Employee> listEmployees();
 
