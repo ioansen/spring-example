@@ -20,11 +20,11 @@ public class HelloApp extends SpringBootServletInitializer {
         SpringApplication.run(HelloApp.class, args);
     }
 
-    @Bean
+    /*@Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/pages/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
-    }
+    }*/
 }
