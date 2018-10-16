@@ -8,24 +8,25 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import uti.ro.java.tutorials.employees.Employee;
-import uti.ro.java.tutorials.employees.EmployeeDAOImpl;
+import uti.ro.java.tutorials.employees.repo.EmployeeDAOImpl;
 import uti.ro.java.tutorials.employees.EmployeeValidator;
+import uti.ro.java.tutorials.employees.service.EmployeeService;
 
 @Controller
 @ControllerAdvice
 public class EmployeeController {
 
     private EmployeeValidator employeeValidator;
-    private EmployeeDAOImpl employeeDAO;
+    private EmployeeService employeeService;
+
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @Autowired
     public void setEmployeeValidator(EmployeeValidator employeeValidator){
         this.employeeValidator = employeeValidator;
-    }
-
-    @Autowired
-    public void setEmployeeDAO(EmployeeDAOImpl employeeDAO) {
-        this.employeeDAO = employeeDAO;
     }
 
     @InitBinder
@@ -51,19 +52,19 @@ public class EmployeeController {
             return "addemployee";
         }
 
-        employeeDAO.insert(e);
+        employeeService.create(e);
         return "redirect:/employees";
     }
 
     @GetMapping("/employees")
     public String getEmployees(ModelMap model){
-        model.addAttribute("employeeList", employeeDAO.listEmployees());
+        model.addAttribute("employeeList", employeeService.getEmployees());
         return "employees";
     }
 
     @GetMapping("updateemp")
     public String update(@RequestParam long id, ModelMap model){
-        model.addAttribute("employee", employeeDAO.getEmployee(id));
+        model.addAttribute("employee", employeeService.getEmployee(id));
         model.addAttribute("action_name", "Modify");
         model.addAttribute("action", "updateEmployee");
         return "addemployee";
@@ -80,7 +81,7 @@ public class EmployeeController {
             return "addemployee";
         }
 
-        employeeDAO.update(e.getId(), e);
+        employeeService.update(e.getId(), e);
 
         return "redirect:/employees";
 
@@ -88,7 +89,7 @@ public class EmployeeController {
 
     @GetMapping("deleteemp")
     public String deleteEmployee(@RequestParam long id, ModelMap model){
-        employeeDAO.delete(id);
+        employeeService.delete(id);
         return "redirect:/employees";
 
     }

@@ -1,4 +1,4 @@
-package uti.ro.java.tutorials.employees;
+package uti.ro.java.tutorials.employees.repo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
@@ -8,6 +8,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import uti.ro.java.tutorials.employees.Employee;
+import uti.ro.java.tutorials.employees.repo.EmployeeDAO;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;

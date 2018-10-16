@@ -1,4 +1,6 @@
-package uti.ro.java.tutorials.employees;
+package uti.ro.java.tutorials.employees.repo;
+
+import uti.ro.java.tutorials.employees.Employee;
 
 import java.util.List;
 
