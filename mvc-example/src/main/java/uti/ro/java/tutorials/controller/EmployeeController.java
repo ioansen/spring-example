@@ -46,17 +46,17 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public ModelAndView addEmployee(@ModelAttribute("employee") @Validated Employee e,
+    public String addEmployee(@ModelAttribute("employee") @Validated Employee e,
                               BindingResult result, ModelMap model) {
 
         if(result.hasErrors()){
             model.addAttribute("action_name", "Add");
             model.addAttribute("action", "addEmployee");
-            return new ModelAndView("addemployee");
+            return "addemployee";
         }
 
         employeeDAO.insert(e);
-        return new ModelAndView("redirect:/employees");
+        return "redirect:/employees";
     }
 
     @GetMapping("/employees")
@@ -74,26 +74,26 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public ModelAndView updateEmployee(@ModelAttribute("employee") @Validated Employee e,
+    public String updateEmployee(@ModelAttribute("employee") @Validated Employee e,
                               BindingResult result, ModelMap model) {
 
         if(result.hasErrors()){
-            model.addAttribute("employee", employeeDAO.getEmployee(e.getId()));
+            model.addAttribute("employee", e);
             model.addAttribute("action_name", "Modify");
             model.addAttribute("action", "updateEmployee");
-            return new ModelAndView("addemployee");
+            return "addemployee";
         }
 
         employeeDAO.update(e.getId(), e);
 
-        return new ModelAndView("redirect:/employees");
+        return "redirect:/employees";
 
     }
 
     @GetMapping("deleteemp")
-    public ModelAndView deleteEmployee(@RequestParam long id, ModelMap model){
+    public String deleteEmployee(@RequestParam long id, ModelMap model){
         employeeDAO.delete(id);
-        return new ModelAndView("redirect:/employees");
+        return "redirect:/employees";
 
     }
 
