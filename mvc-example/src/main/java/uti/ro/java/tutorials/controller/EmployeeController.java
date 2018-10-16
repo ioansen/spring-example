@@ -46,19 +46,17 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public String addEmployee(@ModelAttribute("employee") @Validated Employee e,
+    public ModelAndView addEmployee(@ModelAttribute("employee") @Validated Employee e,
                               BindingResult result, ModelMap model) {
 
         if(result.hasErrors()){
             model.addAttribute("action_name", "Add");
             model.addAttribute("action", "addEmployee");
-            return "addemployee";
+            return new ModelAndView("addemployee");
         }
 
         employeeDAO.insert(e);
-
-        model.addAttribute("employeeList", employeeDAO.listEmployees());
-        return "employees";
+        return new ModelAndView("redirect:/employees");
     }
 
     @GetMapping("/employees")
@@ -76,28 +74,27 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public String updateEmployee(@ModelAttribute("employee") @Validated Employee e,
+    public ModelAndView updateEmployee(@ModelAttribute("employee") @Validated Employee e,
                               BindingResult result, ModelMap model) {
 
         if(result.hasErrors()){
             model.addAttribute("employee", employeeDAO.getEmployee(e.getId()));
             model.addAttribute("action_name", "Modify");
             model.addAttribute("action", "updateEmployee");
-            return "addemployee";
+            return new ModelAndView("addemployee");
         }
 
         employeeDAO.update(e.getId(), e);
 
-        model.addAttribute("employeeList", employeeDAO.listEmployees());
-        return "employees";
+        return new ModelAndView("redirect:/employees");
+
     }
 
     @GetMapping("deleteemp")
-    public String deleteEmployee(@RequestParam long id, ModelMap model){
+    public ModelAndView deleteEmployee(@RequestParam long id, ModelMap model){
         employeeDAO.delete(id);
-        model.addAttribute("employeeList", employeeDAO.listEmployees());
+        return new ModelAndView("redirect:/employees");
 
-        return "employees";
     }
 
 }

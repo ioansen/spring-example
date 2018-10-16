@@ -8,9 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-
 @SpringBootApplication
 public class HelloApp extends SpringBootServletInitializer {
 
