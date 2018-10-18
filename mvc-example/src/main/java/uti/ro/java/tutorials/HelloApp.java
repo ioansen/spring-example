@@ -27,6 +27,6 @@ public class HelloApp extends SpringBootServletInitializer implements WebMvcConf
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/css/");
         registry.addResourceHandler("/ang/**").addResourceLocations("classpath:/angularjs/");
         registry.addResourceHandler("/tutorial/**").addResourceLocations("classpath:/angulartutorial/");
-        //registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/pages/");
+        registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/pages/");
     }
 }

@@ -1,0 +1,26 @@
+<table>
+    <tr>
+        <th>Emp ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Salary</th>
+        <th>Department</th>
+        <th>Job</th>
+    </tr>
+
+    <tr ng-repeat = "e in employees">
+        <td>{{ e.id }}</td>
+        <td>{{ e.name }}</td>
+        <td>{{ e.lastname }}</td>
+        <td>{{ e.salary }}</td>
+        <td>{{ e.dep }}</td>
+        <td>{{ e.job }}</td>
+        <td style="display: inline-block;">
+            <a class = "button_table" href="#/employees/update/{{e.id}}">Modify</a>
+            <a class = "button_table" href="#/employees/delete/{{e.id}}">Delete</a>
+            <a class = "button_table" href="#/employees/view/{{e.id}}">View</a>
+        </td>
+    </tr>
+</table>
+<br>
+<a href="#/employees/add/" class="button">Add employee</a>

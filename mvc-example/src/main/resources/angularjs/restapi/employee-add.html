@@ -1,0 +1,38 @@
+<div class="form-div">
+    <form name="employeeForm" novalidate>
+    <span ng-show = "showId">
+         <label for="id">Employee Id </label><br>
+         <input id="id" type="text" ng-model="employee.id" readonly="readonly"/><br>
+    </span>
+
+        <label for = "name">Name</label>
+        <span style="color:red" ng-show = "employeeForm.name.$dirty && employeeForm.name.$invalid">
+        <span ng-show = "employeeForm.name.$error.required">Name is required</span>
+    </span><br>
+        <input id = "name" name="name" type="text" ng-model="employee.name" required/><br>
+
+        <label for = "lastname">Last name</label>
+        <span style="color:red" ng-show = "employeeForm.lastname.$dirty && employeeForm.lastname.$invalid">
+        <span ng-show = "employeeForm.lastname.$error.required">Last name is required</span>
+    </span><br>
+        <input id = "lastname" name="lastname" type="text" ng-model="employee.lastname" required/><br>
+
+        <label for = "salary">Salary</label>
+        <span style="color:red" ng-show = "employeeForm.salary.$dirty && employeeForm.salary.$invalid">
+        <span ng-show = "employeeForm.salary.$error.required">Salary is required</span>
+        <span ng-show = "employeeForm.salary.$error.number">Not a number</span>
+    </span><br>
+        <input id = "salary" name="salary" type="number" ng-model="employee.salary" required/><br>
+
+        <label for = "dep">Department</label><br>
+        <select id = "dep">
+            <option value="it">IT</option>
+            <option value="hr">HR</option>
+            <option value="contabilitate">Contabilitate</option>
+        </select><br>
+        <label for = "job">Job</label><br>
+        <input id = "job" type="text" ng-model="employee.job"/><br>
+        <button class="button_long" ng-disabled="employeeForm.name.$invalid ||
+                    employeeForm.lastname.$invalid || employeeForm.salary.$invalid" ng-click="post()">{{action}}</button>
+    </form>
+</div>
