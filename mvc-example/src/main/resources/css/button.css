@@ -20,6 +20,18 @@
     cursor: pointer;
 }
 
+.button_long:disabled,
+.button_long[disabled]{
+    width: 100%;
+    background-color: #B20000;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .button_table {
     background-color: #4CAF50; /* Green */
     border: none;
