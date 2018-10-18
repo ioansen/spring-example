@@ -6,10 +6,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @SpringBootApplication
-public class HelloApp extends SpringBootServletInitializer {
+public class HelloApp extends SpringBootServletInitializer implements WebMvcConfigurer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
@@ -20,11 +22,11 @@ public class HelloApp extends SpringBootServletInitializer {
         SpringApplication.run(HelloApp.class, args);
     }
 
-    /*@Bean
-    public ViewResolver getViewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/pages/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }*/
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/css/");
+        registry.addResourceHandler("/ang/**").addResourceLocations("classpath:/angularjs/");
+        registry.addResourceHandler("/tutorial/**").addResourceLocations("classpath:/angulartutorial/");
+        //registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/pages/");
+    }
 }

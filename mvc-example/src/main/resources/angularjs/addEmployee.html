@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/button.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+
+</head>
+<body>
+    <div ng-app = "mainApp" ng-controller="employeeController">
+        <form name="employeeForm" novalidate>
+            <span ng-show = "show">
+                 <label for="id">Employee Id </label><br>
+                 <input id="id" type="text" ng-model="employee.id" readonly="readonly"/><br>
+            </span>
+
+
+            <label for = "name">Name</label><br>
+            <input id = "name" type="text" ng-model="employee.name" /><br>
+
+            <label for = "lastname">Last name</label><br>
+            <input id = "lastname" type="text" ng-model="employee.lastname"/><br>
+
+            <label for = "salary">Salary</label><br>
+            <input id = "salary" type="number" ng-model="employee.salary"/><br>
+
+            <label for = "dep">Department</label><br>
+            <select id = "dep">
+                <option value="it">IT</option>
+                <option value="hr">HR</option>
+                <option value="contabilitate">Contabilitate</option>
+            </select><br>
+            <label for = "job">Job</label><br>
+            <input id = "job" type="text" ng-model="employee.job"/><br>
+            <button class="button_long" ng-click="post()">{{action}}</button>
+        </form>
+
+        <script>
+            var mainApp = angular.module("mainApp", ['ngRoute'], function($locationProvider) {
+                $locationProvider.html5Mode(true);
+            });
+
+            mainApp.controller('employeeController', function ($scope,$http,$location,$window) {
+                var id = $location.search().id;
+
+                console.log(id);
+                var url = "http://localhost:8080/rest/employees/" + id;
+                $scope.action = $location.search().action;
+
+                if($scope.action === 'Modify'){
+                    $scope.show = true;
+                    $http.get(url).then( function(response) {
+                        $scope.employee = response.data;
+                    });
+                    $scope.post = function () {
+                        var url = "http://localhost:8080/rest/employees/" + $scope.employee.id;
+
+                        $http.put(url,$scope.employee).then( function(response) {
+                            console.log(response);
+                            $window.location.href = '/ang/employees.html';
+
+                        });
+                    };
+
+                }
+                else{
+                    $scope.show = false;
+                    $scope.post = function () {
+                        var url = "http://localhost:8080/rest/employees/";
+
+                        $http.post(url,$scope.employee).then( function(response) {
+                            console.log(response);
+                            $window.location.href = '/ang/employees.html';
+
+                        });
+                    };
+                }
+            });
+
+
+        </script>
+    </div>
+</body>
+</html>
