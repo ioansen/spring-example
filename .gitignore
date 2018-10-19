@@ -1,4 +1,9 @@
 #intelij idea
 /.idea/
 *.iml
-/target/
+**/target/
+
+
+/dsadsa/
+**/yarn.lock
+**/node_modules/

@@ -53,7 +53,10 @@ myApp.controller('EmployeeUpdateCtrl', function ($scope, $location, $routeParams
 
 myApp.controller('EmployeeDeleteCtrl', function ($scope, $location, $routeParams, EmployeeFactory) {
     EmployeeFactory.delete($routeParams.id);
-    $location.path("#/employees/");
+    EmployeeFactory.listem()
+        .then(function (response) {
+            $scope.employees = response.data;
+        });
 
 });
 

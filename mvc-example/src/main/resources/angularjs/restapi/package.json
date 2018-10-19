@@ -1,0 +1,36 @@
+{
+  "name": "angular-example",
+  "version": "0.0.1",
+  "description": "Just to learn angular",
+  "main": "index.js",
+  "repository": "https://github.com/ioansen/spring-tutorial/tree/master/mvc-example/src/main/resources/angularjs/restapi",
+  "author": "ioan.sendroiu <ioan.sendroiu@uti.ro>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "angular": "^1.7.5",
+    "angular-animate": "^1.7.5",
+    "angular-resource": "^1.7.5",
+    "angular-route": "^1.7.5",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "jasmine-core": "^3.2.1",
+    "karma": "^3.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.2",
+    "protractor": "^5.4.1"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server ./ang/restapi/ -a localhost -p 8081 -c-1",
+    "pretest": "npm install",
+    "test": "karma start karma.conf.js",
+    "test-single-run": "karma start karma.conf.js --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor e2e-tests/protractor.conf.js"
+  }
+}
