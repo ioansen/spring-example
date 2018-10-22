@@ -6,6 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -28,5 +29,12 @@ public class HelloApp extends SpringBootServletInitializer implements WebMvcConf
         registry.addResourceHandler("/ang/**").addResourceLocations("classpath:/angularjs/");
         registry.addResourceHandler("/tutorial/**").addResourceLocations("classpath:/angulartutorial/");
         registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/pages/");
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/rest/employees/**")
+            //.allowedOrigins("http://localhost:8081")
+            .allowedMethods("GET","POST","PUT","DELETE");
     }
 }
