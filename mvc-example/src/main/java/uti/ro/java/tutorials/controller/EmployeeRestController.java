@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import uti.ro.java.tutorials.dto.EmployeeMessageDTO;
 import uti.ro.java.tutorials.dto.MessageDTO;
 import uti.ro.java.tutorials.employees.Employee;
 import uti.ro.java.tutorials.employees.EmployeeValidator;
@@ -50,8 +51,8 @@ public class EmployeeRestController {
 
     @PostMapping
     public ResponseEntity<Object> createEmployee(@RequestBody @Validated Employee employee) {
-        employeeService.create(employee);
-        return new ResponseEntity<>(new MessageDTO(false, "Employee created successfully"), HttpStatus.CREATED);
+        long id = employeeService.create(employee);
+        return new ResponseEntity<>(new EmployeeMessageDTO(false, "Employee created successfully id: " + id, id), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
