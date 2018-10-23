@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import uti.ro.java.tutorials.dto.MessageDTO;
 import uti.ro.java.tutorials.employees.Employee;
 import uti.ro.java.tutorials.employees.EmployeeValidator;
 import uti.ro.java.tutorials.employees.service.EmployeeService;
@@ -50,18 +51,18 @@ public class EmployeeRestController {
     @PostMapping
     public ResponseEntity<Object> createEmployee(@RequestBody @Validated Employee employee) {
         employeeService.create(employee);
-        return new ResponseEntity<>("Employee is created successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>(new MessageDTO(false, "Employee created successfully"), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateEmployee(@PathVariable("id") long id, @RequestBody @Validated Employee employee) {
         employeeService.update(id, employee);
-        return new ResponseEntity<>("Employee is updated successsfully", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageDTO(false, "Employee updated successfully"), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteEmployee(@PathVariable("id") long id) {
         employeeService.delete(id);
-        return new ResponseEntity<>("Employee is deleted successsfully", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageDTO(false, "Employee deleted successfully"), HttpStatus.OK);
     }
 }
