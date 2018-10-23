@@ -1,4 +1,4 @@
-package uti.ro.java.tutorials.employees.repo;
+package uti.ro.java.tutorials.repo;
 
 import uti.ro.java.tutorials.employees.Employee;
 

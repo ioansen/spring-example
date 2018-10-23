@@ -1,7 +1,16 @@
 package uti.ro.java.tutorials.employees;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Employee {
 
+    @Id
+    @GeneratedValue
     private long id;
     private String name;
     private String lastname;

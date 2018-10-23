@@ -1,9 +1,7 @@
 package uti.ro.java.tutorials.employee.mockrepo;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import uti.ro.java.tutorials.employees.Employee;
-import uti.ro.java.tutorials.employees.repo.EmployeeDAO;
+import uti.ro.java.tutorials.repo.EmployeeDAO;
 
 import java.util.ArrayList;
 import java.util.HashMap;

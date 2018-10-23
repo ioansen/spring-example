@@ -9,10 +9,10 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import uti.ro.java.tutorials.employees.Employee;
-import uti.ro.java.tutorials.employees.repo.EmployeeDAO;
+import uti.ro.java.tutorials.repo.EmployeeDAO;
 import uti.ro.java.tutorials.employee.mockrepo.EmployeeDAOMock;
-import uti.ro.java.tutorials.employees.service.EmployeeService;
-import uti.ro.java.tutorials.employees.service.EmployeeServiceImpl;
+import uti.ro.java.tutorials.service.EmployeeService;
+import uti.ro.java.tutorials.service.EmployeeServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;

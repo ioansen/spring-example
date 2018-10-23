@@ -1,11 +1,10 @@
-package uti.ro.java.tutorials.employees.service;
+package uti.ro.java.tutorials.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uti.ro.java.tutorials.employees.Employee;
-import uti.ro.java.tutorials.employees.repo.EmployeeDAO;
+import uti.ro.java.tutorials.repo.EmployeeDAO;
 
 import java.util.List;
 

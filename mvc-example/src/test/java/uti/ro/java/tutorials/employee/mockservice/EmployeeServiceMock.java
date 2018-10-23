@@ -1,11 +1,7 @@
 package uti.ro.java.tutorials.employee.mockservice;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
 import uti.ro.java.tutorials.employees.Employee;
-import uti.ro.java.tutorials.employees.service.EmployeeService;
+import uti.ro.java.tutorials.service.EmployeeService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
