@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Transactional
 @Repository
 @DependsOn({"transactionManager", "dataSource"})
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -51,7 +50,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Employee findEmployee(long id) {
         String SQL = "SELECT * from employees where id = ?";
         Employee e = jdbcTemplate.queryForObject(SQL,
@@ -61,7 +59,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Employee> listEmployees() {
         String SQL = "select * from employees";
         List<Employee> employees = jdbcTemplate.query(SQL, new EmployeeMapper());

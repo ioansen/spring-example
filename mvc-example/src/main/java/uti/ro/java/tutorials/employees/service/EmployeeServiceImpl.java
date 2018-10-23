@@ -3,11 +3,13 @@ package uti.ro.java.tutorials.employees.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import uti.ro.java.tutorials.employees.Employee;
 import uti.ro.java.tutorials.employees.repo.EmployeeDAO;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
@@ -24,11 +26,13 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Employee getEmployee(long id) {
         return employeeDAO.findEmployee(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Employee> getEmployees() {
         return employeeDAO.listEmployees();
     }
