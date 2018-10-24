@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import uti.ro.java.tutorials.employees.Employee;
 import uti.ro.java.tutorials.repo.EmployeeDAO;
 import uti.ro.java.tutorials.employee.mockrepo.EmployeeDAOMock;
+import uti.ro.java.tutorials.repo.EmployeeRepository;
 import uti.ro.java.tutorials.service.EmployeeService;
 import uti.ro.java.tutorials.service.EmployeeServiceImpl;
 
@@ -20,11 +21,11 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 public class EmployeeServiceTest {
 
-    @TestConfiguration
+   /* @TestConfiguration
     static class EmployeeServiceImplTestContextConfiguration {
 
         @Bean
-        public EmployeeDAO employeeDAO() {
+        public EmployeeRepository employeeRepository() {
             return new EmployeeDAOMock();
         }
 
@@ -60,5 +61,5 @@ public class EmployeeServiceTest {
         service.delete(id);
 
 
-    }
+    }*/
 }
