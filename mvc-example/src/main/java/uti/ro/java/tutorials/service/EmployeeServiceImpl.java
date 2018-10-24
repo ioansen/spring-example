@@ -31,12 +31,15 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public long create(Employee e) {
+        System.out.println("service: created employee");
+        e.setId(null);
         return employeeRepository.save(e).getId();
     }
 
     @Override
     //@Transactional(readOnly = true)
     public Employee getEmployee(long id) {
+        System.out.println("service: getting employee " + id);
         Optional<Employee> employee = employeeRepository.findById(id);
 
         if (!employee.isPresent())
@@ -48,16 +51,19 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     //@Transactional(readOnly = true)
     public List<Employee> getEmployees() {
+        System.out.println("service: listing employees");
         return employeeRepository.findAll();
     }
 
     @Override
     public void update(long id, Employee e) {
+        System.out.println("service: update employee");
         employeeRepository.save(e);
     }
 
     @Override
     public void delete(long id) {
+        System.out.println("service: delete employee");
         employeeRepository.deleteById(id);
     }
 }

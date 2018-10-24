@@ -83,7 +83,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         @Override
         public Employee mapRow(ResultSet rs, int rowColumn) throws SQLException{
             Employee employee = new Employee();
-            employee.setId(rs.getInt("id"));
+            employee.setId(rs.getLong("id"));
             employee.setName(rs.getString("name"));
             employee.setLastname(rs.getString("lastname"));
             employee.setSalary(rs.getInt("salary"));
